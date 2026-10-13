@@ -1,0 +1,18 @@
+<?xml versión = "1.0" encoding = "UTF-8"?>
+<Deportes>
+	<deporte>
+		<Nombre>Gimnasia </Nombre>
+		<Variantes>rítmica y artistica</Variantes>
+		<Apatato>pelota, aro, mazas, cuerda y cinta</aparato>
+	</deporte>
+	<deporte>
+		<Nombre>Voleybol </Nombre>
+		<Variantes>pista y playa</Variantes>
+		<Apatato>balón</aparato>
+	</deporte>
+	<deporte>
+		<Nombre> Balonmano </Nombre>
+		<Variantes>pista y playa</Variantes>
+		<Apatato>balón</aparato>
+	</deporte>
+<Deportes>

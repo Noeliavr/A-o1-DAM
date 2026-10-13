@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cafetería Aromas del Mundo</title>
+  <link rel="icon" href="logo.png" type="image/png">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f5f0;
+      color: #432a22;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background: #5b3b2a;
+      color: #fff;
+      padding: 1em 0.5em;
+      text-align: center;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.2em;
+      margin: 0;
+    }
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      text-decoration: underline;
+    }
+    .logo {
+      float: left;
+      margin-left: 2em;
+      width: 70px;
+      vertical-align: middle;
+      background: #fff;
+      padding: 6px;
+      border-radius: 8px;
+    }
+    main {
+      max-width: 850px;
+      margin: 2em auto 0 auto;
+      background: #fdfaf6;
+      padding: 2em;
+      border-radius: 12px;
+      min-height: 300px;
+    }
+    h1, h2 {
+      color: #3a2315;
+      text-align: center;
+    }
+    .btn {
+      background: #795548;
+      color: #fff;
+      border: none;
+      padding: 10px 32px;
+      border-radius: 6px;
+      margin: 1em 0;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: #926d53;
+    }
+    table {
+      margin: 1.5em auto;
+      border-collapse: collapse;
+      width: 90%;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #d9bfa9;
+      padding: 0.75em 1.5em;
+      text-align: center;
+    }
+    th {
+      background: #e9dbcf;
+    }
+    ul {
+      margin: 1em auto;
+      max-width: 350px;
+      font-size: 18px;
+    }
+    .section-img {
+      display: block;
+      margin: 1.8em auto;
+      border-radius: 16px;
+      max-width: 350px;
+      width: 100%;
+    }
+    .form-section {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.5em 2em;
+      max-width: 400px;
+      margin: 1.6em auto;
+      box-shadow: 0 2px 10px rgba(70,55,40,0.12);
+    }
+    label {
+      display: block;
+      margin-top: 0.8em;
+      margin-bottom: 0.2em;
+      font-weight: 600;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.7em;
+      border-radius: 6px;
+      border: 1px solid #cabbb0;
+      margin-bottom: 1em;
+      background: #faf5f1;
+    }
+    button {
+      width: 100%;
+      background: #795548;
+      color: #fff;
+      padding: 10px 0;
+      border-radius: 7px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 0.8em;
+    }
+    button:hover {
+      background: #926d53;
+    }
+    .clear { clear: both; }
+    .social {
+      margin: 0.7em 0;
+      font-size: 15px;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      main { padding: 1.2em; }
+      .logo { width: 46px; margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo Cafetería" class="logo">
+    <nav>
+      <ul>
+        <li><a href="#inicio" class="active">Inicio</a></li>
+        <li><a href="#menu">Menú</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="clear"></div>
+  </header>
+
+  <!-- Sección INICIO -->
+  <main id="inicio">
+    <h1>Aromas del Mundo</h1>
+    <p style="text-align:center">Descubre el auténtico sabor del café artesanal de los cinco continentes.</p>
+    <img src="cafe.jpg" class="section-img" alt="Taza de café">
+    <h2>Nuestra historia</h2>
+    <p style="text-align:center"><strong>Aromas del Mundo</strong> selecciona los mejores granos de café de América Latina, África y Asia para ofrecer una experiencia única.</p>
+    <div style="text-align:center">
+      <a href="#menu" class="btn">Ver Menú</a>
+    </div>
+  </main>
+
+  <!-- Sección MENÚ -->
+  <main id="menu">
+    <h1>Nuestro Menú</h1>
+    <!-- Tabla de bebidas -->
+    <table>
+      <tr><th>Bebida</th><th>Tamaño</th><th>Precio</th></tr>
+      <tr><td>Capuccino</td><td>Mediano</td><td>2,50 €</td></tr>
+      <tr><td>Latte</td><td>Grande</td><td>3,00 €</td></tr>
+      <tr><td>Espresso</td><td>Pequeño</td><td>1,80 €</td></tr>
+    </table>
+    <h2>Postres</h2>
+    <ul>
+      <li>Cheesecake de frutos rojos</li>
+      <li>Brownie con helado</li>
+      <li>Croissant artesanal</li>
+    </ul>
+    <img src="postre.jpg" class="section-img" alt="Postre">
+  </main>
+
+  <!-- Sección CONTACTO -->
+  <main id="contacto">
+    <h1>Contáctanos</h1>
+    <div class="form-section">
+      <form method="get">
+        <label for="busqueda">Buscar producto:</label>
+        <input type="text" id="busqueda" name="busqueda" placeholder="Ej. Capuccino">
+        <button type="submit">Buscar (GET)</button>
+      </form>
+    </div>
+    <div class="form-section">
+      <form method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje"></textarea>
+        <button type="submit">Enviar (POST)</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="social">
+      &copy; 2025 Cafetería Aromas del Mundo | Instagram · Facebook
+    </div>
+  </footer>
+</body>
+</html>

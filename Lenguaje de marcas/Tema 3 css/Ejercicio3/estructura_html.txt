@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechNova - Innovación Digital</title>
+  <autor></autor>
+  <description></description>
+</head>
+
+<body>
+
+<!--da estilo al header y nav desde la hoja de estilos utilizando un display:flex en la clase header y en la clase nav-->
+<header class="header">
+<div class="logo">TechNova</div>
+<nav class="nav">
+<a href="#">Inicio</a>
+<a href="#">Servicios</a>
+<a href="#">Proyectos</a>
+<a href="#">Contactos</a>
+</nav>
+</header>
+
+
+<section class="hero">
+Esto es el Hero. Introduce el texto y la imagen, y da el estilo desde la hoja de estilos css externa con un display:flex en la clase hero.
+</section>
+
+<section class="services">
+Aquí introduce los Servicios y da el estilo desde la hoja de estilos css externa utilizando un grid.
+</section>
+
+<footer>
+Este es el pie de página. Utiliza un display:grid  para dar estilo a los elementos que aparecen en el pie de página desde la hoja de estilos css externa.
+</footer>
+
+</body>
+</html>
