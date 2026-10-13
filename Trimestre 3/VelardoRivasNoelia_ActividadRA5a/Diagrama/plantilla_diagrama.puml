@@ -1,0 +1,84 @@
+@startuml DiagramaLogistica
+skinparam classAttributeIconSize 0
+hide circle
+
+' ========================
+' ZONA DE CLASES
+' ========================
+
+abstract class Paquete {
+  - id : String
+  - peso : double
+  - destino : String
+
+  + Paquete(id : String, peso : double, destino : String)
+  + getId() : String
+  + setId(id : String) : void
+  + getPeso() : double
+  + setPeso(peso : double) : void
+  + getDestino() : String
+  + setDestino(destino : String) : void
+}
+
+class PaqueteFragil {
+  - seguro : double
+  + PaqueteFragil(id : String, peso : double, destino : String, seguro : double)
+  + getSeguro() : double
+  + setSeguro(seguro : double) : void
+}
+
+class PaqueteUrgente {
+  - prioridad : int
+  + PaqueteUrgente(id : String, peso : double, destino : String, prioridad : int)
+  + getPrioridad() : int
+  + setPrioridad(prioridad : int) : void
+}
+
+class GPS {
+  - coordenadas : String
+  + GPS(coordenadas : String)
+  + getCoordenadas() : String
+  + setCoordenadas(coordenadas : String) : void
+}
+
+class Conductor {
+  - nombre : String
+  - licencia : String
+  + Conductor(nombre : String, licencia : String)
+  + getNombre() : String
+  + setNombre(nombre : String) : void
+  + getLicencia() : String
+  + setLicencia(licencia : String) : void
+}
+
+class Camion {
+  - matricula : String
+  - capacidad : double
+  - gps : GPS
+  - paquetes : List<Paquete>
+  - conductor : Conductor
+
+  + Camion(matricula : String, capacidad : double, coordenadas : String)
+  + cargarPaquete(p : Paquete) : void
+  + getMatricula() : String
+  + setMatricula(matricula : String) : void
+  + getCapacidad() : double
+  + setCapacidad(capacidad : double) : void
+  + getGps() : GPS
+  + getPaquetes() : List<Paquete>
+  + getConductor() : Conductor
+  + setConductor(conductor : Conductor) : void
+}
+
+' ========================
+' ZONA DE RELACIONES
+' ========================
+
+Paquete <|-- PaqueteFragil
+Paquete <|-- PaqueteUrgente
+
+Camion "1" *-- "1" GPS : integrado
+Camion "1" o-- "0..*" Paquete : transporta
+Camion "1" --> "1" Conductor : asignado
+
+@enduml

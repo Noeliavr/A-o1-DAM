@@ -1,0 +1,37 @@
+@startuml
+' Máquina expendedora - Diagrama de estados
+skinparam backgroundColor #FFFFFF
+skinparam state {
+  BackgroundColor #EEF5FF
+  BorderColor #2E6DA4
+  ArrowColor #2E6DA4
+  FontName Arial
+}
+
+[*] --> EsperandoMoneda
+
+state EsperandoMoneda {
+}
+
+state SeleccionandoProducto {
+}
+
+state Entregando {
+}
+
+' Transiciones principales
+EsperandoMoneda --> SeleccionandoProducto : insertar moneda
+
+' Condición de stock
+SeleccionandoProducto --> Entregando : elegir producto [hay stock]
+
+' Cancelación
+SeleccionandoProducto --> EsperandoMoneda : pulsar botón cancelar
+
+' Flujo de entrega
+Entregando --> EsperandoMoneda : finalizar
+
+' Caso sin stock (extra para excelencia)
+SeleccionandoProducto --> SeleccionandoProducto : elegir producto [sin stock] / mostrar mensaje
+
+@enduml

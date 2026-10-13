@@ -1,0 +1,48 @@
+@startuml
+title Diagrama de clases - Taller
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+
+abstract class Vehiculo {
+  # matricula : String
+  --
+  + Vehiculo(matricula : String)
+  {abstract} + arrancar() : void
+  + getMatricula() : String
+  + setMatricula(matricula : String) : void
+}
+
+class Coche {
+  - motor : Motor
+  --
+  + Coche(matricula : String, caballos : int)
+  + arrancar() : void
+  + getMotor() : Motor
+}
+
+class Motor {
+  - caballos : int
+  - encendido : boolean
+  --
+  + Motor(caballos : int)
+  + encender() : void
+  + getCaballos() : int
+  + setCaballos(caballos : int) : void
+  + isEncendido() : boolean
+}
+
+class Mecanico {
+  - nombre : String
+  --
+  + Mecanico(nombre : String)
+  + reparar(c : Coche) : void
+  + getNombre() : String
+  + setNombre(nombre : String) : void
+}
+
+Coche --|> Vehiculo
+Coche *-- Motor : crea en motor
+Mecanico ..> Coche : usa en reparar()
+
+@enduml

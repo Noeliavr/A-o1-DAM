@@ -1,0 +1,37 @@
+@startuml
+title Diagrama actividad Cajero
+skinparam monochrome true
+autonumber
+
+actor Cliente
+participant Cajero
+database Banco
+
+Cliente -> Cajero : introducirTarjeta()
+activate Cajero
+
+Cajero -> Cliente : solicitarPIN()
+Cliente -> Cajero : teclearPIN()
+
+Cajero -> Banco : validarPIN()
+activate Banco
+Banco -->> Cajero : PIN Correcto
+deactivate Banco
+
+Cliente -> Cajero : solicitarRetirada(50€)
+
+Cajero -> Banco : consultarSaldo(50€)
+activate Banco
+
+alt Hay saldo
+    Banco -->> Cajero : OK
+    deactivate Banco
+    Cajero -> Cliente : entregarBilletes()
+else No hay saldo
+    Banco -->> Cajero : Error
+    deactivate Banco
+    Cajero -> Cliente : mostrarSinFondos()
+end
+
+deactivate Cajero
+@enduml
