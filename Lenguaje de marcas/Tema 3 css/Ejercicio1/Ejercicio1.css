@@ -1,0 +1,46 @@
+body {
+    color: #00F;
+    background: #CFC;
+    font-family: Georgia, Cambria, serif;
+    font-size: 16px;
+}
+
+h1 {
+    color: #F00;
+    font-family: Verdana, Calibri, sans-serif;
+    font-size: 32px;
+}
+
+h2 {
+    color: #A00;
+    font-family: Verdana, Calibri, sans-serif;
+    font-size: 24px;
+}
+
+.verde {
+    color: #060;
+    font-weight: bold;
+}
+
+.negro {
+    color: #000;
+}
+
+.sustantivo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tecnologia {
+    color: #FFF;
+    background: #000;
+    font-style: italic;
+    padding: 0 3px;
+}
+
+.sigla {
+    color: #FFF;
+    background: #000;
+    font-style: italic;
+    font-weight: normal;
+}
