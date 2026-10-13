@@ -1,0 +1,37 @@
+@startuml
+title Diagrama de casos de uso del sistema de biblioteca
+skinparam monochrome true
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle stickman
+skinparam usecase {
+  BackgroundColor white
+  BorderColor black
+}
+
+actor "Socio" as S
+actor "Bibliotecario" as B
+
+rectangle "Sistema biblioteca" {
+    usecase "Prestar libro" as UC_Prestar
+    usecase "Devolver libro" as UC_Devolver
+    usecase "Dar de alta socio" as UC_Alta
+    usecase "Actualizar inventario" as UC_Inventario
+    usecase "Cobrar multa" as UC_Multa
+}
+
+S --> UC_Prestar
+S --> UC_Devolver
+B --> UC_Alta
+
+UC_Prestar ..> UC_Inventario : <<include>>
+UC_Devolver ..> UC_Inventario : <<include>>
+UC_Multa ..> UC_Devolver : <<extend>>
+
+note right of UC_Multa
+Se ejecuta solo si la devolución
+se realiza fuera de plazo.
+end note
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+title cerradura_hotel - Diagrama de estados
+skinparam monochrome false
+skinparam shadowing false
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam state {
+  BackgroundColor #EEF5FF
+  BorderColor #2E6DA4
+  FontColor #111111
+  ArrowColor #1F4E79
+  StartColor #1F1F1F
+  EndColor #1F1F1F
+}
+
+hide empty description
+
+[*] --> Bloqueada
+
+state Bloqueada
+state Desbloqueada
+
+' Tarjeta inválida: transición reflexiva con acción de error
+Bloqueada --> Bloqueada : pasar tarjeta [tarjeta inválida] / pitar error
+
+' Tarjeta válida: desbloquea y activa indicación visual
+Bloqueada --> Desbloqueada : pasar tarjeta [tarjeta válida] / encender luz verde
+
+' Retorno automático por temporizador
+Desbloqueada --> Bloqueada : pasar 5 segundos
+
+@enduml

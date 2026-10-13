@@ -1,0 +1,42 @@
+@startuml
+title Diagrama reserva de vuelos
+skinparam monochrome true
+autonumber
+
+actor Pasajero
+participant "App Vuelos" as App
+participant Aerolinea
+participant PasarelaPago
+
+loop Hasta encontrar vuelo
+    Pasajero -> App : buscarVuelo()
+    activate App
+    App -> Aerolinea : consultarVuelos()
+    activate Aerolinea
+    Aerolinea -->> App : listaVuelos
+    deactivate Aerolinea
+    App -->> Pasajero : mostrarResultados()
+    deactivate App
+end
+
+Pasajero -> App : seleccionarVuelo()
+activate App
+App -> PasarelaPago : procesarTarjeta(datosTarjeta)
+activate PasarelaPago
+
+alt Pago exitoso
+    PasarelaPago -->> App : OK
+    deactivate PasarelaPago
+    App -> Aerolinea : confirmarPlaza()
+    activate Aerolinea
+    Aerolinea -->> App : billeteVirtual
+    deactivate Aerolinea
+    App -->> Pasajero : reenviarBillete()
+else Pago fallido
+    PasarelaPago -->> App : Error
+    deactivate PasarelaPago
+    App -->> Pasajero : mostrar("Tarjeta rechazada")
+end
+
+deactivate App
+@enduml
