@@ -1,0 +1,108 @@
+create table clientes (
+id_cliente int primary key,
+nombre varchar(50),
+ciudad varchar(50),
+activo boolean
+);
+
+create table pedidos (
+id_pedido int primary key,
+id_cliente int,
+total decimal(10,2),
+fecha date,
+foreign key (id_cliente) references clientes(id_cliente)
+);
+
+insert into clientes values
+(1, 'Ana', 'Madrid', TRUE),
+(2, 'Luis', 'Barcelona', TRUE),
+(3, 'Carlos', 'Madrid', TRUE),
+(4, 'Sofia', 'Valencia', TRUE);
+
+insert into pedidos values
+(1, 1, 500.00, '2025-01-10'),
+(2, 1, 200.00, '2025-01-15'),
+(3, 2, 150.00, '2025-01-12'),
+(4, 3, 50.00, '2025-01-20');
+
+
+• Crear la siguiente tabla e inserta en ella los clientes cuyo total de compras sea mayor al promedio de compras de todos los clientes.
+create table clientes_premium (
+id_cliente int,
+nombre varchar(50),
+total_compras decimal(10,2)
+);
+
+
+• Poner clientes a inactivos (actualizar a activo a FALSE) para aquellos cuyo total de compras sea menor al promedio general de compras.
+• Eliminar los pedidos de clientes que estén inactivos.
+• Crear una tabla similar a clientes e insertar en ella los clientes que no tengan pedidos.
+• Aumentar un 10% el campo total de pedidos de clientes de Madrid.
+• Eliminar clientes que nunca hayan hecho un pedido.
+
+Respuestas:
+
+Punto 1:
+
+create table clientes_premium (
+id_cliente int,
+nombre varchar(50),
+total_compras decimal(10,2)
+);
+
+insert into clientes_premium 
+(id_cliente,
+ nombre,
+ total_compras)
+select 
+cl.id_cliente as id_cliente,
+cl.nombre as nombre,
+sum(pe.total) as total
+from clientes cl
+inner join pedidos pe
+on cl.id_cliente=pe.id_cliente
+group by cl.id_cliente
+having total > 
+  (select avg(total) 
+   from pedidos);
+
+Punto 2:
+
+update clientes
+set activo=FALSE
+where id_cliente in
+(select pe.id_cliente as id_cliente
+from pedidos pe
+group by pe.id_cliente
+having sum(pe.total)<(select avg(total)from pedidos));
+
+Punto 3:
+
+delete from pedidos
+where id_cliente in 
+(select 
+id_cliente from clientes 
+where activo=FALSE
+);
+
+Punto 4:
+
+create table simClientes as select * from clientes
+where id_cliente not in (select id_cliente from pedidos);
+
+Punto 5:
+
+update pedidos
+set total= total * 1.1
+where id_cliente
+in(select 
+id_cliente from clientes 
+where ciudad='Madrid');
+
+Punto 6:
+
+delete from clientes
+where id_cliente in 
+(select 
+id_cliente from simClientes
+);

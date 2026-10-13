@@ -1,0 +1,110 @@
+create table usuarios (
+id_usuario int primary key,
+nombre varchar(50),
+activo boolean
+);
+
+create table prestamos (
+id_prestamo int primary key,
+id_usuario int,
+fecha_prestamo date,
+fecha_devolucion date,
+foreign key (id_usuario) references usuarios(id_usuario)
+);
+
+insert into usuarios values
+(1, 'Ana', TRUE),
+(2, 'Luis', TRUE),
+(3, 'Carlos', TRUE),
+(4, 'Sofia', TRUE);
+
+insert into prestamos values
+(1, 1, '2025-01-01', '2025-01-10'),
+(2, 1, '2025-02-01', null),
+(3, 2, '2025-01-15', '2025-01-20'),
+(4, 3, '2025-02-05', null);
+
+• Crear la siguiente tabla e inserta en ella los usuarios que hayan realizado más préstamos que el promedio de préstamos por usuario.
+
+
+create table usuarios_frecuentes (
+id_usuario int,
+nombre varchar(50),
+total_prestamos int
+);
+
+
+• Poner usuarios a inactivos (actualizar a activo a FALSE) para aquellos que no tengan ningún préstamo activo (fecha_devolucion es null).
+• Eliminar los préstamos de usuarios que estén inactivos.
+• Crear una tabla similar a usuarios e insertar en ella los usuarios que no hayan hecho préstamos.
+• Eliminar usuarios que nunca hayan hecho un préstamo.
+
+
+
+Punto 1:
+
+insert into usuarios_frecuentes
+(id_usuario,
+nombre,
+total_prestamos)
+select
+us.id_usuario as id_usuario
+us.nombre as nombre
+count(id_prestamos) as total
+from
+usuarios us 
+inner join prestamos pr
+on us.id_usuario=pr.id_usuario
+group by us.id_usuario
+having total >
+  (select
+   avg (total.total) media
+   from 
+     (select 
+      id_usuario,
+      count(id_prestamo) as total
+      from prestamos
+      group by id_usuario) total);
+
+Punto 2:
+
+update usuarios 
+set activo=0
+where id_usuario in
+  (select id_usuario
+   from prestamos
+   where fecha_devolucion is null);
+
+
+Punto 3:
+
+delete from prestamos 
+where id_usuario in
+ (select id_usuario
+  from usuarios
+  where activo=0);
+
+Punto 4:
+
+create table usuarios_sin_prestamos as
+select * 
+from usuarios
+where id_usuario not in
+  (select id_usuario 
+   from prestamos);
+
+Punto 5:
+
+delete from usuarios
+where id_usuario in
+  (select id_usuario 
+   from usuarios_sin_prestamos);
+
+
+
+
+
+
+
+
+

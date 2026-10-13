@@ -1,0 +1,27 @@
+Dadas las siguientes tablas y datos:
+
+create table cuentas (
+id_cuenta int primary key,
+titular varchar(100),
+saldo decimal(10, 2)
+);
+
+insert into cuentas values (1, 'Luisa', 100.00);
+insert into cuentas values (2, 'Miguel', 50.00);
+
+• Luisa paga a la vez una cena 80 euros y a la vez quiere enviar 40 euros a Miguel, indica que sentencias debería haber en cada sesión para que no se le permita a Luisa gastar más que el dinero que tiene en cuenta.
+
+
+select saldo 
+from cuentas 
+where id_cuenta=1 for update;
+
+
+update cuentas
+set saldo = saldo -80
+where id_cuenta=1;
+
+
+select saldo 
+from cuentas 
+where id_cuenta=1 for update;

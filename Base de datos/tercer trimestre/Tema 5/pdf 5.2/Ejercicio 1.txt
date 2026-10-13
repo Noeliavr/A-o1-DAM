@@ -1,0 +1,50 @@
+create table vuelos (
+id_vuelo int primary key,
+destino varchar(50),
+asientos_libres int
+);
+
+create table reservas (
+id_reserva int auto_increment primary key,
+id_vuelo int,
+nombre_pasajero varchar(100),
+foreign key (id_vuelo) references vuelos(id_vuelo)
+);
+
+insert into vuelos values (101, 'Tokio', 1);
+
+• El pasajero Jose Luis quiere reservar en el vuelo a Tokio, realizar el script sql para gestionar esa reserva indicando que nivel de aislamiento es necesario.
+• Posteriormente el pasajero Jose Luis no puede viajar a Tokio por lo pide anular su reserva, realziar el script sql para gestionar este cambio.
+
+Punto 1:
+
+
+
+select asientos_libres 
+from vuelos
+where id_vuelo=101;
+
+#Comprobariamos que hay asientos disponible
+#si ok quitamos uno
+update vuelos
+set asientos_libres=asientos_libres-1
+where id_vuelo=101;
+
+insert into reservas (
+id_reserva,
+id_vuelo,
+nombre_pasajero)
+values
+(1, 101, 'Jose Luis');
+
+Punto 2:
+
+
+delete from reservas 
+where id_reserva=1;
+
+update vuelos
+set asientos_libres=asientos_libres+1
+where id_vuelo=101;
+
+commit;
