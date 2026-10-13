@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Cliente - Tienda Online</title>
+    <link rel="stylesheet" href="ejercicio2.css">
+</head>
+<body>
+    <div class="container">
+        <form action="#" method="post">
+            <h2>Registro cliente</h2>
+            
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" required minlength="3" placeholder="Ejemplo: Juan Pérez">
+            
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+            
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena" required minlength="8"
+                   pattern="(?=.*[A-Z])(?=.*\\d).{8,}" title="Mínimo 8 caracteres, una mayúscula y un número">
+            
+            <label for="fecha">Fecha de nacimiento</label>
+            <input type="date" id="fecha" name="fecha" required>
+            
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" name="direccion" required>
+            
+            <label for="cp">Código postal</label>
+            <input type="text" id="cp" name="cp" pattern="\\d{5}" maxlength="5" required title="5 dígitos">
+            
+            <label for="ciudad">Ciudad</label>
+            <input type="text" id="ciudad" name="ciudad" required>
+            
+            <label for="provincia">Provincia</label>
+            <select id="provincia" name="provincia" required>
+                <option value="">Selecciona...</option>
+                <option value="Madrid">Madrid</option>
+                <option value="Barcelona">Barcelona</option>
+                <option value="Valencia">Valencia</option>
+            </select>
+            
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" pattern="\\d{9}" maxlength="9" required title="9 dígitos">
+            
+            <label>Género</label>
+            <div class="row">
+                <label><input type="radio" name="genero" value="Masculino" required> Masculino</label>
+                <label><input type="radio" name="genero" value="Femenino"> Femenino</label>
+                <label><input type="radio" name="genero" value="NoDecir"> Prefiero no decirlo</label>
+            </div>
+            
+            <label>Preferencias</label>
+            <label><input type="checkbox" name="newsletter"> Recibir newsletter</label>
+            <label><input type="checkbox" name="promociones"> Promociones</label>
+            
+            <label for="metodo">Método de pago favorito</label>
+            <input list="pagos" id="metodo" name="metodo">
+            <datalist id="pagos">
+                <option value="Tarjeta">
+                <option value="PayPal">
+                <option value="Bizum">
+            </datalist>
+            
+            <label for="comentarios">Comentarios adicionales</label>
+            <textarea id="comentarios" name="comentarios" rows="3"></textarea>
+            
+            <label><input type="checkbox" name="condiciones" required> Acepto las condiciones</label>
+            
+            <div class="row">
+                <button type="submit">Enviar</button>
+                <button type="reset">Borrar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
